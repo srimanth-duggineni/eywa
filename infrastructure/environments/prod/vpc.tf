@@ -1,5 +1,5 @@
 module "vpc" {
-  source = "terraform-aws-modules/vpc/aws"
+  source  = "terraform-aws-modules/vpc/aws"
   version = "5.1.1"
 
   name = "eywa"
@@ -13,7 +13,7 @@ module "vpc" {
   single_nat_gateway = true
 
   tags = {
-    Terraform = "true"
+    Terraform   = "true"
     Environment = var.environment
   }
 }
