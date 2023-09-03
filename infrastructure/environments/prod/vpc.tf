@@ -2,7 +2,7 @@ module "vpc" {
   source = "terraform-aws-modules/vpc/aws"
   version = "5.1.1"
 
-  name = "eywa-private"
+  name = "eywa"
   cidr = "13.0.0.0/16"
 
   azs             = ["ap-southeast-4a", "ap-southeast-4b"]
