@@ -23,9 +23,9 @@ jobs:
     runs-on: ubuntu-latest
     environment: production
     env:
-      TF_ENV_VAR_region: ap-southeast-4
-      TF_ENV_VAR_environment: prod
-      TF_ENV_VAR_account: 687568543601
+      TF_VAR_region: ap-southeast-4
+      TF_VAR_environment: prod
+      TF_VAR_account: 687568543601
 
     # Use the Bash shell regardless whether the GitHub Actions runner is ubuntu-latest, macos-latest, or windows-latest
     defaults:
