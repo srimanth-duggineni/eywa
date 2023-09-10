@@ -33,9 +33,19 @@ module "eks" {
     }
   }
 
+  kms_key_owners = ["arn:aws:iam::${var.account}:root", "arn:aws:iam::${var.account}:role/eywa-admin"]
+
   # aws-auth configmap
   create_aws_auth_configmap = true
   manage_aws_auth_configmap = true
+
+  aws_auth_roles = [
+    {
+      rolearn  = "arn:aws:iam::${var.account}:role/eywa-admin"
+      username = "eywa-admin"
+      groups   = ["system:masters"]
+    },
+  ]
 
   aws_auth_users = [
     {
