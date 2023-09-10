@@ -17,3 +17,12 @@ module "vpc" {
     Environment = var.environment
   }
 }
+
+resource "aws_ssm_parameter" "eywa" {
+  name  = "/eywa/vpc"
+  type  = "String"
+  value = jsonencode({
+    vpc_id          = module.vpc.vpc_id
+    private_subnets = module.vpc.private_subnets
+  })
+}
