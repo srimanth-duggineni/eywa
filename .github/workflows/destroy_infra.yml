@@ -26,7 +26,7 @@ jobs:
     defaults:
       run:
         shell: bash
-        working-directory: infrastructure/environments/prod
+        working-directory: infrastructure/modules/addons
 
     steps:
     # Checkout the repository to the GitHub Actions runner
@@ -70,7 +70,7 @@ jobs:
     defaults:
       run:
         shell: bash
-        working-directory: infrastructure/environments/prod
+        working-directory: infrastructure/modules/ultron
 
     steps:
     # Checkout the repository to the GitHub Actions runner
@@ -114,7 +114,7 @@ jobs:
     defaults:
       run:
         shell: bash
-        working-directory: infrastructure/environments/prod
+        working-directory: infrastructure/modules/eywa
 
     steps:
     # Checkout the repository to the GitHub Actions runner
