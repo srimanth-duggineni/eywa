@@ -62,6 +62,7 @@ jobs:
       run: terraform apply -auto-approve -input=false
 
   ultron:
+    needs: eywa
     name: 'Deploy Ultron'
     runs-on: ubuntu-latest
     environment: production
@@ -110,6 +111,7 @@ jobs:
       run: terraform apply -auto-approve -input=false
 
   essentials:
+    needs: ultron
     name: 'Deploy Ultron Essentials'
     runs-on: ubuntu-latest
     environment: production
@@ -118,6 +120,7 @@ jobs:
       TF_VAR_environment: prod
       TF_VAR_account: 687568543601
 
+      
     # Use the Bash shell regardless whether the GitHub Actions runner is ubuntu-latest, macos-latest, or windows-latest
     defaults:
       run:

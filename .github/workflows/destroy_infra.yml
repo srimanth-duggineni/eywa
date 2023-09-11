@@ -57,6 +57,7 @@ jobs:
       run: terraform destroy --auto-approve
 
   ultron:
+    needs: essentials
     name: 'Destroy Ultron'
     runs-on: ubuntu-latest
     environment: production
@@ -100,6 +101,7 @@ jobs:
       run: terraform destroy --auto-approve
 
   eywa:
+    needs: ultron
     name: 'Destroy Eywa'
     runs-on: ubuntu-latest
     environment: production

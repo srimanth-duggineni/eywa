@@ -16,9 +16,9 @@ module "eks" {
 
   cluster_endpoint_public_access = true
 
-  vpc_id                   = module.eywa.vpc_id
-  subnet_ids               = module.eywa.private_subnets
-  control_plane_subnet_ids = module.eywa.private_subnets
+  vpc_id                   = local.eywa.vpc_id
+  subnet_ids               = local.eywa.private_subnets
+  control_plane_subnet_ids = local.eywa.private_subnets
 
   self_managed_node_groups = {
     alpha = {
@@ -60,6 +60,18 @@ module "eks" {
   tags = {
     Environment = var.environment
     Terraform   = "true"
+  }
+}
+
+provider "kubernetes" {
+  host                   = module.eks.cluster_endpoint
+  cluster_ca_certificate = base64decode(module.eks.cluster_certificate_authority_data)
+
+  exec {
+    api_version = "client.authentication.k8s.io/v1beta1"
+    command     = "aws"
+    # This requires the awscli to be installed locally where Terraform is executed
+    args = ["eks", "get-token", "--cluster-name", module.eks.cluster_name]
   }
 }
 
