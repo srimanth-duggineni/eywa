@@ -76,8 +76,8 @@ provider "kubernetes" {
 }
 
 resource "aws_ssm_parameter" "ultron" {
-  name  = "/eywa/ultron"
-  type  = "String"
+  name = "/eywa/ultron"
+  type = "String"
   value = jsonencode({
     cluster_name                       = module.eks.cluster_name
     cluster_endpoint                   = module.eks.cluster_endpoint

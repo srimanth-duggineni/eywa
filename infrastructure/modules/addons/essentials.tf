@@ -7,13 +7,13 @@ locals {
 }
 
 module "eks_blueprints_addons_essentials" {
-  source = "aws-ia/eks-blueprints-addons/aws"
+  source  = "aws-ia/eks-blueprints-addons/aws"
   version = "~> 1.0" #ensure to update this to the latest/desired version
 
-  cluster_name                       = local.ultron.cluster_name
-  cluster_endpoint                   = local.ultron.cluster_endpoint
-  cluster_version                    = local.ultron.cluster_version
-  oidc_provider_arn                  = local.ultron.oidc_provider_arn
+  cluster_name      = local.ultron.cluster_name
+  cluster_endpoint  = local.ultron.cluster_endpoint
+  cluster_version   = local.ultron.cluster_version
+  oidc_provider_arn = local.ultron.oidc_provider_arn
 
   eks_addons = {
     coredns = {
