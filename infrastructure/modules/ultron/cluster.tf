@@ -53,7 +53,12 @@ module "eks" {
     {
       userarn  = "arn:aws:iam::${var.account}:srimanthduggineni"
       username = "srimanthduggineni"
-      groups   = ["Admins"]
+      groups   = ["system:masters"]
+    },
+    {
+      userarn  = "arn:aws:iam::${var.account}:srimanthd"
+      username = "srimanthd"
+      groups   = ["system:masters"]
     },
   ]
 
