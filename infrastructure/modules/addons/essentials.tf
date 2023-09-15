@@ -26,6 +26,10 @@ module "eks_blueprints_addons_essentials" {
       most_recent = true
     }
   }
+
+  enable_ingress_nginx = true
+  enable_external_dns  = true
+  enable_cert_manager  = true
 }
 
 provider "kubernetes" {
