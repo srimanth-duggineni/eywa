@@ -1,3 +1,7 @@
+data "aws_route53_zone" "main" {
+  name = "duggineni.io."
+}
+
 data "aws_ssm_parameter" "ultron" {
   name = "/eywa/ultron"
 }
@@ -34,6 +38,9 @@ module "eks_blueprints_addons_essentials" {
   enable_ingress_nginx = true
   enable_external_dns  = true
   enable_cert_manager  = true
+
+  cert_manager_route53_hosted_zone_arns = ["arn:aws:route53:::hostedzone/${data.aws_route53_zone.main.zone_id}"]
+  external_dns_route53_zone_arns        = ["arn:aws:route53:::hostedzone/${data.aws_route53_zone.main.zone_id}"]
 }
 
 provider "kubernetes" {
