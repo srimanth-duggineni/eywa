@@ -3,7 +3,7 @@ data "aws_ssm_parameter" "ultron" {
 }
 
 data "aws_eks_cluster_auth" "cluster-auth" {
-  name       = local.ultron.cluster_name
+  name = local.ultron.cluster_name
 }
 
 locals {
