@@ -26,3 +26,10 @@ module "eks_blueprints_addons_essentials" {
   cert_manager_route53_hosted_zone_arns = ["arn:aws:route53:::hostedzone/${data.aws_route53_zone.main.zone_id}"]
   external_dns_route53_zone_arns        = ["arn:aws:route53:::hostedzone/${data.aws_route53_zone.main.zone_id}"]
 }
+
+resource "kubectl_manifest" "cluster_issuer" {
+    depends_on = [module.eks_blueprints_addons_essentials]
+    for_each  = toset(data.kubectl_path_documents.docs.documents)
+    yaml_body = each.value
+    namespace "cert-manager"
+}

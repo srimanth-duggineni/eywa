@@ -6,6 +6,10 @@ data "aws_ssm_parameter" "ultron" {
   name = "/eywa/ultron"
 }
 
+data "kubectl_path_documents" "docs" {
+    pattern = "*.yaml"
+}
+
 locals {
   ultron = jsondecode(data.aws_ssm_parameter.ultron.value)
 }
