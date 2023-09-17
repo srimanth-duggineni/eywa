@@ -1,0 +1,31 @@
+server:
+  ingress:
+    enabled: true
+    ingressClassName: "nginx"
+    annotations:
+      nginx.ingress.kubernetes.io/backend-protocol: "HTTPS"
+      nginx.ingress.kubernetes.io/ssl-redirect: "true"
+      external-dns.alpha.kubernetes.io/hostname: argocd.duggineni.io
+    hosts:
+      - argocd.duggineni.io
+    tls:
+      - secretName: argocd-server-tls
+        hosts:
+          - argocd.duggineni.io
+    https: true
+  certificate:
+    # -- Deploy a Certificate resource (requires cert-manager)
+    enabled: true
+    # -- The name of the Secret that will be automatically created and managed by this Certificate resource
+    secretName: argocd-server-tls
+    # -- Certificate primary domain (commonName)
+    domain: argocd.duggineni.io
+    # Certificate issuer
+    ## Ref: https://cert-manager.io/docs/concepts/issuer
+    issuer:
+      # -- Certificate issuer group. Set if using an external issuer. Eg. `cert-manager.io`
+      group: "cert-manager.io"
+      # -- Certificate issuer kind. Either `Issuer` or `ClusterIssuer`
+      kind: "ClusterIssuer"
+      # -- Certificate issuer name. Eg. `letsencrypt`
+      name: "letsencrypt-prod"

@@ -1,19 +1,3 @@
-data "aws_route53_zone" "main" {
-  name = "duggineni.io."
-}
-
-data "aws_ssm_parameter" "ultron" {
-  name = "/eywa/ultron"
-}
-
-data "aws_eks_cluster_auth" "cluster-auth" {
-  name = local.ultron.cluster_name
-}
-
-locals {
-  ultron = jsondecode(data.aws_ssm_parameter.ultron.value)
-}
-
 module "eks_blueprints_addons_essentials" {
   source  = "aws-ia/eks-blueprints-addons/aws"
   version = "~> 1.0" #ensure to update this to the latest/desired version
@@ -41,30 +25,4 @@ module "eks_blueprints_addons_essentials" {
 
   cert_manager_route53_hosted_zone_arns = ["arn:aws:route53:::hostedzone/${data.aws_route53_zone.main.zone_id}"]
   external_dns_route53_zone_arns        = ["arn:aws:route53:::hostedzone/${data.aws_route53_zone.main.zone_id}"]
-}
-
-provider "kubernetes" {
-  host                   = local.ultron.cluster_endpoint
-  cluster_ca_certificate = base64decode(local.ultron.cluster_certificate_authority_data)
-
-  exec {
-    api_version = "client.authentication.k8s.io/v1beta1"
-    command     = "aws"
-    # This requires the awscli to be installed locally where Terraform is executed
-    args = ["eks", "get-token", "--cluster-name", local.ultron.cluster_name]
-  }
-}
-
-provider "helm" {
-  kubernetes {
-    host                   = local.ultron.cluster_endpoint
-    cluster_ca_certificate = base64decode(local.ultron.cluster_certificate_authority_data)
-
-    exec {
-      api_version = "client.authentication.k8s.io/v1beta1"
-      command     = "aws"
-      # This requires the awscli to be installed locally where Terraform is executed
-      args = ["eks", "get-token", "--cluster-name", local.ultron.cluster_name]
-    }
-  }
 }
