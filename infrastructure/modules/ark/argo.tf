@@ -1,5 +1,5 @@
 resource "helm_release" "ark" {
-  name = "ark"
+  name   = "ark"
   atomic = true
 
   repository = "https://argoproj.github.io/argo-helm"
