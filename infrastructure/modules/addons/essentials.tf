@@ -19,7 +19,6 @@ module "eks_blueprints_addons_essentials" {
     }
   }
 
-  enable_aws_load_balancer_controller = true
   enable_external_dns                 = true
   enable_cert_manager                 = true
 
@@ -31,4 +30,15 @@ resource "kubectl_manifest" "cluster_issuer" {
   depends_on = [module.eks_blueprints_addons_essentials]
   for_each   = toset(data.kubectl_path_documents.docs.documents)
   yaml_body  = each.value
+}
+
+resource "helm_release" "ingres_nginx_controller" {
+  name   = "ingres_nginx_controller"
+  atomic = true
+
+  repository = "https://kubernetes.github.io/ingress-nginx"
+  chart      = "ingress-nginx"
+
+  namespace        = "ingress-nginx"
+  create_namespace = true
 }
