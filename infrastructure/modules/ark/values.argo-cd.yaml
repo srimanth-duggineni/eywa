@@ -1,9 +1,9 @@
 server:
   ingress:
     enabled: true
-    ingressClassName: "nginx"
+    ingressClassName: "alb"
     annotations:
-      nginx.ingress.kubernetes.io/backend-protocol: "HTTPS"
+      alb.ingress.kubernetes.io/backend-protocol: "HTTPS"
       external-dns.alpha.kubernetes.io/hostname: argocd.duggineni.io
     hosts:
       - argocd.duggineni.io

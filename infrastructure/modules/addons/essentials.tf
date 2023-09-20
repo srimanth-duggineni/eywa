@@ -19,7 +19,7 @@ module "eks_blueprints_addons_essentials" {
     }
   }
 
-  enable_ingress_nginx = true
+  enable_aws_load_balancer_controller = true
   enable_external_dns  = true
   enable_cert_manager  = true
 
