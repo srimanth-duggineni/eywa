@@ -33,7 +33,8 @@ resource "kubectl_manifest" "cluster_issuer" {
 }
 
 resource "helm_release" "ingres_nginx_controller" {
-  name   = "ingres_nginx_controller"
+  depends_on = [kubectl_manifest.cluster_issuer]
+  name   = "ingres-nginx-controller"
   atomic = true
 
   repository = "https://kubernetes.github.io/ingress-nginx"
@@ -41,4 +42,8 @@ resource "helm_release" "ingres_nginx_controller" {
 
   namespace        = "ingress-nginx"
   create_namespace = true
+
+  values = [
+    "${file("values/ingress_nginx.yaml")}"
+  ]
 }
