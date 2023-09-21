@@ -7,7 +7,7 @@ data "aws_ssm_parameter" "ultron" {
 }
 
 data "kubectl_path_documents" "docs" {
-  pattern = "*.yaml"
+  pattern = "manifests/*.yaml"
 }
 
 locals {
