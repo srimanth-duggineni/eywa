@@ -5,7 +5,7 @@ resource "helm_release" "ark" {
   repository = "https://argoproj.github.io/argo-helm"
   chart      = "argo-cd"
 
-  namespace        = "ark"
+  namespace        = "argocd"
   create_namespace = true
 
   values = [
