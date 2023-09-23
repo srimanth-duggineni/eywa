@@ -8,6 +8,9 @@ module "eks_blueprints_addons_essentials" {
   oidc_provider_arn = local.ultron.oidc_provider_arn
 
   eks_addons = {
+    aws-ebs-csi-driver = {
+      most_recent = true
+    }
     coredns = {
       most_recent = true
     }
