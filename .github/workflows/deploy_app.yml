@@ -1,10 +1,9 @@
 name: Deploy Apps
 
 on:
-  workflow_run:
-    workflows: ["Random"]
-    types:
-      - completed
+  push:
+    branches:
+      - main
 
 jobs:
   deploy-to-dev:
