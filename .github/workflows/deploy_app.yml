@@ -1,0 +1,16 @@
+name: Deploy Apps
+
+on:
+  workflow_run:
+    workflows: ["Random"]
+    types:
+      - completed
+
+jobs:
+  deploy-to-dev:
+    runs-on: ubuntu
+    steps:
+      - name: echo
+        shell: bash
+        run: |
+          echo "Hello world"
