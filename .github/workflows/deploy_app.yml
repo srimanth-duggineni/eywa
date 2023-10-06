@@ -1,7 +1,10 @@
 name: Deploy Apps
 
 on:
-  push:
+  workflow_run:
+    workflows: ["Random"]
+    types:
+      - completed
     branches:
       - main
 
