@@ -1,4 +1,4 @@
-name: Random
+name: RandomNew
 
 on:
   workflow_dispatch:
