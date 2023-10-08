@@ -10,7 +10,7 @@ server:
       - secretName: argocd-server-tls
         hosts:
           - argocd.duggineni.io
-    https: true
+    https: false
   certificate:
     # -- Deploy a Certificate resource (requires cert-manager)
     enabled: true
