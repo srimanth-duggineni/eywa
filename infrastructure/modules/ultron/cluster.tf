@@ -25,7 +25,7 @@ module "eks" {
 
   self_managed_node_groups = {
     alpha = {
-      dsad = "dsd"
+      dsad          = "dsd"
       name          = "alpha"
       instance_type = "m7g.xlarge"
       ami_id        = "ami-00d2c979c4338a8b4"
