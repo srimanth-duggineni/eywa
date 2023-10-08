@@ -19,7 +19,7 @@ module "eks" {
   # Self Managed Node Group(s)
   self_managed_node_group_defaults = {
     iam_role_additional_policies = {
-      AmazonSSMManagedInstanceCore = "arn:aws:iam::aws:policy/aws-service-role/AmazonEKSServiceRolePolicy"
+      AmazonSSMManagedInstanceCore = "arn:aws:iam::aws:policy/AmazonEKSServicePolicy"
     }
   }
 
