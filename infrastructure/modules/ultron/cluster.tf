@@ -16,8 +16,16 @@ module "eks" {
   subnet_ids               = local.eywa.private_subnets
   control_plane_subnet_ids = local.eywa.private_subnets
 
+  # Self Managed Node Group(s)
+  self_managed_node_group_defaults = {
+    iam_role_additional_policies = {
+      AmazonSSMManagedInstanceCore = "arn:aws:iam::aws:policy/aws-service-role/AmazonEKSServiceRolePolicy"
+    }
+  }
+
   self_managed_node_groups = {
     alpha = {
+      dsad = "dsd"
       name          = "alpha"
       instance_type = "m7g.xlarge"
       ami_id        = "ami-00d2c979c4338a8b4"
