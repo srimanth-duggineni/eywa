@@ -2,12 +2,11 @@ name: Deploy Apps
 
 on:
   workflow_run:
-    workflows: ["Random"]
+    workflows: ["Random", "RandomNew"]
     types:
       - completed
     branches:
       - main
-      - 'srimanthd/*'
 
 jobs:
   deploy-to-dev:
