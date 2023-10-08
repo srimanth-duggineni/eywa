@@ -1,0 +1,13 @@
+name: Random
+
+on:
+  workflow_dispatch:
+
+jobs:
+  deploy-to-stage:
+    runs-on: ubuntu-latest
+    steps:
+      - name: echo
+        shell: bash
+        run: |
+          echo "Hello world 2"
