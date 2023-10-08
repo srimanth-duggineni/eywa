@@ -19,13 +19,12 @@ module "eks" {
   # Self Managed Node Group(s)
   self_managed_node_group_defaults = {
     iam_role_additional_policies = {
-      AmazonSSMManagedInstanceCore = "arn:aws:iam::aws:policy/AmazonEKSServicePolicy"
+      AmazonSSMManagedInstanceCore = "arn:aws:iam::aws:policy/AmazonSSMManagedInstanceCore"
     }
   }
 
   self_managed_node_groups = {
     alpha = {
-      dsad          = "dsd"
       name          = "alpha"
       instance_type = "m7g.xlarge"
       ami_id        = "ami-00d2c979c4338a8b4"
