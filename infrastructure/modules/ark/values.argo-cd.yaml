@@ -3,6 +3,7 @@ server:
     enabled: true
     ingressClassName: "nginx"
     annotations:
+      nginx.ingress.kubernetes.io/backend-protocol: "HTTPS"
       external-dns.alpha.kubernetes.io/hostname: argocd.duggineni.io
     hosts:
       - argocd.duggineni.io
@@ -10,6 +11,7 @@ server:
       - secretName: argocd-server-tls
         hosts:
           - argocd.duggineni.io
+    https: true
   certificate:
     # -- Deploy a Certificate resource (requires cert-manager)
     enabled: true
