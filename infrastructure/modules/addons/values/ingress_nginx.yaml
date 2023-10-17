@@ -1,5 +1,4 @@
 controller:
-  configMapNamespace: "ingress-nginx"
   service:
     type: LoadBalancer
     externalTrafficPolicy: Local
