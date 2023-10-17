@@ -3,7 +3,8 @@ controller:
     type: LoadBalancer
     externalTrafficPolicy: Local
     annotations:
+      nginx.ingress.kubernetes.io/force-ssl-redirect: "false"
+      nginx.ingress.kubernetes.io/ssl-redirect: "false"
       service.beta.kubernetes.io/aws-load-balancer-backend-protocol: "tcp"
       service.beta.kubernetes.io/aws-load-balancer-type: nlb
-      service.beta.kubernetes.io/aws-load-balancer-nlb-target-type: ip
       service.beta.kubernetes.io/aws-load-balancer-subnets: eywa-private-ap-southeast-2a, eywa-private-ap-southeast-2b
