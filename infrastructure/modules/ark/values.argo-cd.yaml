@@ -5,7 +5,8 @@ server:
     annotations:
       nginx.ingress.kubernetes.io/force-ssl-redirect: "false"
       nginx.ingress.kubernetes.io/ssl-redirect: "false"
-      nginx.ingress.kubernetes.io/backend-protocol: "HTTP"
+      nginx.ingress.kubernetes.io/hsts: "false"
+      nginx.ingress.kubernetes.io/backend-protocol: "HTTPS"
       external-dns.alpha.kubernetes.io/hostname: argocd.duggineni.io
     hosts:
       - argocd.duggineni.io
@@ -13,7 +14,7 @@ server:
       - secretName: argocd-server-tls
         hosts:
           - argocd.duggineni.io
-    https: false
+    https: true
   certificate:
     # -- Deploy a Certificate resource (requires cert-manager)
     enabled: true
